@@ -52,15 +52,7 @@ namespace InveonCourseAppBackend.API.Controllers
             return Ok(new {accessToken});
         }
 
-        [HttpPost("logout")]
-        public async Task<IActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-            return Ok(new { Message = "Logout successful" });
-        }
-
-
-
+    
         
     }
 }
