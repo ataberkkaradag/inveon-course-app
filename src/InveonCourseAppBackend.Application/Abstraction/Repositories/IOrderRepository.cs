@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InveonCourseAppBackend.Application.Abstraction.Repositories
 {
-    public interface IOrderRepository: IGenericRepository<Order>
+    public interface IOrderRepository: IRepository<Order>
     {
     }
 }

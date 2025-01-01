@@ -14,7 +14,7 @@ namespace InveonCourseAppBackend.Infrastructure
         public static void AddInfrastructureDI(this IServiceCollection services)
         {
 
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
             services.AddScoped<ICategoryRepository,CategoryRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();

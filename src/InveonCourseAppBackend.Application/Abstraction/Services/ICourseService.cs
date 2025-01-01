@@ -11,8 +11,8 @@ namespace InveonCourseAppBackend.Application.Abstraction.Services
 {
     public interface ICourseService
     {
-        Task<Course> GetCourseByIdAsync(Guid id);
-        Task<IEnumerable<Course>> GetAllCourseAsync();
+        Task<CourseDto> GetCourseByIdAsync(Guid id);
+        Task<IEnumerable<CourseDto>> GetAllCourseAsync();
         Task AddCourseAsync(CourseCreateDto courseCreateDto);
         Task UpdateCourseAsync(Guid id, CourseUpdateDto courseUpdateDto);
         Task DeleteCourseAsync(Guid id);

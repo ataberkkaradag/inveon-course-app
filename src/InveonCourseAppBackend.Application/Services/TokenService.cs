@@ -1,4 +1,4 @@
-﻿using Azure.Core;
+﻿
 using InveonCourseAppBackend.Application.Abstraction.Services;
 using InveonCourseAppBackend.Application.DTOs.Token;
 using InveonCourseAppBackend.Domain.Entities;
@@ -33,7 +33,7 @@ namespace InveonCourseAppBackend.Application.Services
             var jwtSection = _configuration.GetSection("JwtSettings");
           
             var accessTokenExpiration = DateTime.Now.AddMinutes(int.Parse(jwtSection["AccessTokenExpiration"]));
-            //var refreshTokenExpiration = DateTime.Now.AddMinutes(int.Parse(jwtSection["RefreshTokenExpiration"]));
+            
             var securityKey =new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSection["SecurityKey"]));
 
             var tokenClaims=new List<Claim>{

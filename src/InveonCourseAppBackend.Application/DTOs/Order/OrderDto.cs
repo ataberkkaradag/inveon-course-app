@@ -1,4 +1,5 @@
 ﻿using InveonCourseAppBackend.Application.DTOs.Course;
+using InveonCourseAppBackend.Application.DTOs.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,9 @@ namespace InveonCourseAppBackend.Application.DTOs.Order
         public Guid Id { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalPrice { get; set; }
+        public UserDto User { get; set; }
+        public Guid? PaymentId { get; set; }
+        public string PaymentStatus { get; set; }
         public List<CourseDto> Courses { get; set; }
     }
 }

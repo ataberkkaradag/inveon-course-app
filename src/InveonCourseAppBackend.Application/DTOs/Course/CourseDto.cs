@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InveonCourseAppBackend.Application.DTOs.Category;
+using InveonCourseAppBackend.Application.DTOs.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +10,14 @@ namespace InveonCourseAppBackend.Application.DTOs.Course
 {
     public class CourseDto
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get;  set; }
 
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
 
-        public Guid CategoryId { get; set; }
-        public Guid InstructorId { get; set; }
+        public UserDto Insturctor { get; set; }
+        public CategoryDto Category { get; set; }    
+        
     }
 }

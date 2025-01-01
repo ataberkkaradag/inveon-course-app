@@ -1,7 +1,9 @@
 ﻿using InveonCourseAppBackend.Application.Abstraction.Repositories;
 using InveonCourseAppBackend.Application.Abstraction.Services;
 using InveonCourseAppBackend.Application.DTOs.Order;
+using InveonCourseAppBackend.Application.DTOs.User;
 using InveonCourseAppBackend.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,17 +58,18 @@ namespace InveonCourseAppBackend.Application.Services
             return orderDto;
         }
 
-        public async Task<OrderDetailDto> GetOrderByIdAsync(Guid orderId)
+        public async Task<OrderDto> GetOrderByIdAsync(Guid id)
         {
-            var order=await _orderRepository.GetByIdAsync(orderId);
+            var order=await _orderRepository.FindAll().Where(o => o.Id == id)
+                .Include(o => o.User).Include(o => o.Payment).FirstOrDefaultAsync();
             if (order == null)
                 throw new Exception("Order not found");
-            return new OrderDetailDto
+            return new OrderDto
             {
-                OrderId = order.Id,
-                UserId = order.UserId,
-                UserName=order.User.UserName,
-                CourseNames=order.Courses.Select(c=>c.Title).ToList(),  
+                Id = order.Id,
+                
+                User=new UserDto {Id=order.User.Id,Email=order.User.Email,UserName=order.User.Email },
+                
                 TotalPrice=order.TotalPrice,
                 OrderDate=order.OrderDate,
                 PaymentId=order.PaymentId,

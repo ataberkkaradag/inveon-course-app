@@ -11,7 +11,7 @@ namespace InveonCourseAppBackend.Application.Abstraction.Services
     public interface IOrderService
     {
         Task<OrderDto> CreateOrderAsync(OrderCreateDto orderCreateDto); 
-        Task<OrderDetailDto> GetOrderByIdAsync(Guid orderId); 
+        Task<OrderDto> GetOrderByIdAsync(Guid orderId); 
         Task<IEnumerable<OrderListDto>> GetOrdersByUserAsync(Guid userId);
     }
 }

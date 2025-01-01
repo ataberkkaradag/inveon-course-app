@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InveonCourseAppBackend.Application.Abstraction.Repositories
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         Task<T?> GetByIdAsync(Guid id);
         Task CreateAsync(T entity);
@@ -16,5 +16,6 @@ namespace InveonCourseAppBackend.Application.Abstraction.Repositories
         Task DeleteAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+         IQueryable<T> FindAll();
     }
 }

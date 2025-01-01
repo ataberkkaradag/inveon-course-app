@@ -8,7 +8,7 @@ namespace InveonCourseAppBackend.Application.DTOs.Category
 {
     public class CategoryDto
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get;  set; }
         public string Name { get; set; }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using InveonCourseAppBackend.Application.Abstraction.Repositories;
 using InveonCourseAppBackend.Application.Abstraction.Services;
+using InveonCourseAppBackend.Application.DTOs.Category;
 using InveonCourseAppBackend.Application.DTOs.Course;
+using InveonCourseAppBackend.Application.DTOs.User;
 using InveonCourseAppBackend.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,19 +41,40 @@ namespace InveonCourseAppBackend.Application.Services
             await _courseRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<Course>> GetAllCourseAsync()
+        public async Task<IEnumerable<CourseDto>> GetAllCourseAsync()
         {
-            return await _courseRepository.GetAllAsync();
+            var courses = _courseRepository.FindAll();
+
+            return await courses.Select(course => new CourseDto
+            {
+                Id=course.Id,
+                Title= course.Title,
+                Description= course.Description,
+                Price = course.Price,
+                Insturctor= new UserDto { Id=course.Instructor.Id,UserName=course.Instructor.UserName,Email=course.Instructor.Email},
+                Category=new CategoryDto { Id=course.Category.Id, Name=course.Category.Name }
+
+
+            }).ToListAsync();
         }
 
-        public async Task<Course> GetCourseByIdAsync(Guid id)
+        public async Task<CourseDto> GetCourseByIdAsync(Guid id)
         {
-           var course=await _courseRepository.GetByIdAsync(id);
+            var course = await _courseRepository.FindAll().Where(c => c.Id == id)
+                .Include(c=>c.Instructor).Include(c=>c.Category).FirstOrDefaultAsync();
             if (course == null) 
             {
                 throw new Exception("course not found");
             }
-            return course;
+            return  new CourseDto
+        {
+               Id = course.Id,
+               Title = course.Title, 
+            Description = course.Description,
+            Price = course.Price,
+            Insturctor = new UserDto { Id = course.Instructor.Id ,UserName = course.Instructor.UserName, Email = course.Instructor.Email },
+              Category = new CategoryDto { Id = course.Category.Id, Name = course.Category.Name }
+            };
         }
 
         public async Task UpdateCourseAsync(Guid id, CourseUpdateDto courseUpdateDto)

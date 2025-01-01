@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InveonCourseAppBackend.Infrastructure.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<T> _dbSet;
@@ -38,6 +38,9 @@ namespace InveonCourseAppBackend.Infrastructure.Repositories
         {
             return await _dbSet.Where(predicate).ToListAsync();
         }
+
+        public IQueryable<T> FindAll()
+     => _dbSet.AsNoTracking();
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {

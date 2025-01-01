@@ -3,6 +3,7 @@ using InveonCourseAppBackend.Application.Abstraction.Services;
 using InveonCourseAppBackend.Application.DTOs.Course;
 using InveonCourseAppBackend.Application.Services;
 using InveonCourseAppBackend.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,12 +18,14 @@ namespace InveonCourseAppBackend.API.Controllers
         {
             _courseService = courseService;
         }
+        
         [HttpGet]
         public async Task<IActionResult> GetCourses()
         {
             var courses = await _courseService.GetAllCourseAsync();
             return Ok(courses);
         }
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCourseById(Guid id) 
         {
