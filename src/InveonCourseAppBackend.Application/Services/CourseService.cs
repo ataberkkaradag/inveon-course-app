@@ -4,6 +4,7 @@ using InveonCourseAppBackend.Application.DTOs.Category;
 using InveonCourseAppBackend.Application.DTOs.Course;
 using InveonCourseAppBackend.Application.DTOs.User;
 using InveonCourseAppBackend.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,15 @@ namespace InveonCourseAppBackend.Application.Services
     public class CourseService : ICourseService
     {
         private readonly ICourseRepository _courseRepository;
-        public CourseService(ICourseRepository courseRepository)
+        private readonly IUserRepository _userRepository;
+        private readonly UserManager<User> _userManager;
+        public CourseService(ICourseRepository courseRepository, IUserRepository userRepository, UserManager<User> userManager)
         {
             _courseRepository = courseRepository;
+            _userRepository = userRepository;
+            _userManager = userManager;
+            
+
         }
         public async Task AddCourseAsync(CourseCreateDto courseCreateDto)
         {
@@ -33,8 +40,24 @@ namespace InveonCourseAppBackend.Application.Services
             };
 
             await _courseRepository.CreateAsync(course);
-            
+
+            var instructor = await _userManager.Users
+      .Include(u => u.CreatedCourses)
+      .FirstOrDefaultAsync(u => u.Id == courseCreateDto.InstructorId);
+            if (instructor == null)
+                throw new Exception("Instructor not found");
+
+            // Navigasyon özelliğini güncelle
+            if (instructor.CreatedCourses == null)
+                instructor.CreatedCourses = new List<Course>();
+
+            instructor.CreatedCourses.Add(course);
+
+            // Kullanıcıyı güncelle
+            await _userManager.UpdateAsync(instructor);
         }
+
+
 
         public async Task DeleteCourseAsync(Guid id)
         {
@@ -51,7 +74,7 @@ namespace InveonCourseAppBackend.Application.Services
                 Title= course.Title,
                 Description= course.Description,
                 Price = course.Price,
-                Insturctor= new UserDto { Id=course.Instructor.Id,UserName=course.Instructor.UserName,Email=course.Instructor.Email},
+                Instructor= new UserDto { Id=course.Instructor.Id,UserName=course.Instructor.UserName,Email=course.Instructor.Email},
                 Category=new CategoryDto { Id=course.Category.Id, Name=course.Category.Name }
 
 
@@ -72,7 +95,7 @@ namespace InveonCourseAppBackend.Application.Services
                Title = course.Title, 
             Description = course.Description,
             Price = course.Price,
-            Insturctor = new UserDto { Id = course.Instructor.Id ,UserName = course.Instructor.UserName, Email = course.Instructor.Email },
+            Instructor = new UserDto { Id = course.Instructor.Id ,UserName = course.Instructor.UserName, Email = course.Instructor.Email },
               Category = new CategoryDto { Id = course.Category.Id, Name = course.Category.Name }
             };
         }

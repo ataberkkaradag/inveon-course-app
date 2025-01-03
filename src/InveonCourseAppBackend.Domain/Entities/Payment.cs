@@ -18,6 +18,6 @@ namespace InveonCourseAppBackend.Domain.Entities
         public Order Order { get; set; } 
         public decimal Price { get; set; }
         public DateTime PaymentDate { get; set; }
-        public string PaymentStatus { get; set; } = "Processing";
+        public string PaymentStatus { get; set; } = "InProgress";
     }
 }

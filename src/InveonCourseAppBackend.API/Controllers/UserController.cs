@@ -14,10 +14,11 @@ namespace InveonCourseAppBackend.API.Controllers
     {
 
         private readonly IUserService _userService;
-
-        public UserController(IUserService userService)
+        private readonly IStudentCourseService _studentCourseService;
+        public UserController(IUserService userService, IStudentCourseService studentCourseService)
         {
             _userService = userService;
+            _studentCourseService = studentCourseService;
         }
 
         [HttpPut]
@@ -49,6 +50,18 @@ namespace InveonCourseAppBackend.API.Controllers
             return Ok(users);
         }
 
+        [HttpGet("courses/{userId}")]
+        public async Task<IActionResult> GetCoursesByUserId(Guid userId)
+        {
+            var courses = await _studentCourseService.GetCoursesByUserIdAsync(userId);
+
+            if (courses == null || !courses.Any())
+            {
+                return NotFound("No courses found for this user.");
+            }
+
+            return Ok(courses);
+        }
 
     }
 }

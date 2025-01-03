@@ -20,6 +20,7 @@ namespace InveonCourseAppBackend.Infrastructure
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPaymentRepository,PaymentRepository>();
+            services.AddScoped<IStudentCourseRepository, StudentCourseRepository>();
         }
     }
 }

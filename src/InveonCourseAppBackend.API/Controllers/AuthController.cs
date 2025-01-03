@@ -49,7 +49,7 @@ namespace InveonCourseAppBackend.API.Controllers
             if(!result.Succeeded) return Unauthorized(new { Message = "invalid credentials" });
             var accessToken = _tokenService.CreateToken(user);
             
-            return Ok(new {accessToken});
+            return Ok(new {accessToken,user});
         }
 
     

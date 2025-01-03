@@ -16,7 +16,7 @@ namespace InveonCourseAppBackend.Application.DTOs.Course
         public string Description { get; set; }
         public decimal Price { get; set; }
 
-        public UserDto Insturctor { get; set; }
+        public UserDto Instructor { get; set; }
         public CategoryDto Category { get; set; }    
         
     }

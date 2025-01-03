@@ -20,8 +20,8 @@ namespace InveonCourseAppBackend.API.Controllers
         public async Task<IActionResult> CreateOrder(OrderCreateDto orderCreateDto) 
         {
 
-            await _orderService.CreateOrderAsync(orderCreateDto);
-            return Ok();
+           var order= await _orderService.CreateOrderAsync(orderCreateDto);
+            return Ok(order);
         
         }
 
