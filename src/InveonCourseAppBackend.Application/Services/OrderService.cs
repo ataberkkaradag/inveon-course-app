@@ -70,7 +70,7 @@ namespace InveonCourseAppBackend.Application.Services
             if (user == null)
                 throw new Exception("User not found");
 
-            // Navigasyon özelliklerini güncelle
+            
             if (user.SubscribedCourses == null)
                 user.SubscribedCourses = new List<StudentCourse>();
 
@@ -84,7 +84,6 @@ namespace InveonCourseAppBackend.Application.Services
 
             user.Orders.Add(order);
 
-            // Kullanıcıyı güncelle
             await _userManager.UpdateAsync(user);
 
 

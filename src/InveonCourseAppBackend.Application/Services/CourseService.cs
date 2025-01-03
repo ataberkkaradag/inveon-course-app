@@ -47,13 +47,13 @@ namespace InveonCourseAppBackend.Application.Services
             if (instructor == null)
                 throw new Exception("Instructor not found");
 
-            // Navigasyon özelliğini güncelle
+            
             if (instructor.CreatedCourses == null)
                 instructor.CreatedCourses = new List<Course>();
 
             instructor.CreatedCourses.Add(course);
 
-            // Kullanıcıyı güncelle
+      
             await _userManager.UpdateAsync(instructor);
         }
 
