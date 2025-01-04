@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InveonCourseAppBackend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241229210326_initial")]
-    partial class initial
+    [Migration("20250104111153_seed")]
+    partial class seed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,6 +53,43 @@ namespace InveonCourseAppBackend.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("aa17679c-7a07-45b0-831e-87f02faa911a"),
+                            Name = "ASP.NET Core"
+                        },
+                        new
+                        {
+                            Id = new Guid("83668fa1-fe5e-4e41-86a7-f61672db3013"),
+                            Name = "ASP.NET MVC"
+                        },
+                        new
+                        {
+                            Id = new Guid("3cd3bec7-e935-41e3-afd8-eb600f05174f"),
+                            Name = "Microservices"
+                        },
+                        new
+                        {
+                            Id = new Guid("c2170d5e-fdc2-476d-8afe-6303ef0795fc"),
+                            Name = "Elasticsearch"
+                        },
+                        new
+                        {
+                            Id = new Guid("1111a53e-1ed9-453d-a480-de46712eb863"),
+                            Name = "Unity"
+                        },
+                        new
+                        {
+                            Id = new Guid("9e73ffb7-015c-4be2-a78b-d595d806b847"),
+                            Name = "JavaScript"
+                        },
+                        new
+                        {
+                            Id = new Guid("0cd7de0d-d051-45e0-bb5b-8541b7391ad2"),
+                            Name = "React"
+                        });
                 });
 
             modelBuilder.Entity("InveonCourseAppBackend.Domain.Entities.Course", b =>
@@ -85,6 +122,98 @@ namespace InveonCourseAppBackend.Infrastructure.Migrations
                     b.HasIndex("InstructorId");
 
                     b.ToTable("Courses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1f1e6893-171f-4a07-bc32-5bceaad2329d"),
+                            CategoryId = new Guid("9e73ffb7-015c-4be2-a78b-d595d806b847"),
+                            Description = "Bu kurs, modern web geliştirme dünyasına adım atmak isteyen herkes için tasarlanmıştır. Temelden başlayarak, HTML, CSS, JavaScript, Bootstrap, ASP.NET Core ve diğer teknolojileri kullanarak gerçek dünya projeleri geliştirmeyi öğrenin.",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 129.99m,
+                            Title = "Full Stack Web Geliştirme: HTML'den .NET Core'a"
+                        },
+                        new
+                        {
+                            Id = new Guid("82bc6766-d1f8-46e9-bb59-f243ec63ddf5"),
+                            CategoryId = new Guid("1111a53e-1ed9-453d-a480-de46712eb863"),
+                            Description = "Heyecan verici bir dünyanın kapılarını aralıyoruz! Unity ile mobil oyun geliştirme kursu, yaratıcı düşünceyi kodla buluşturarak, özgün oyun fikirlerinizi gerçeğe dönüştürmeniz için tasarlandı. Oyun geliştirme dünyasının kapılarını açmak için siz de bu maceraya katılın! Mobil platformların büyülü dünyasında kendi izinizi bırakmak için hazır mısınız?\r\n\r\n\r\n\r\nBu eşsiz eğitimde, sizi bir mobil oyun geliştiricisi olmaya hazırlayacak adımları adım adım öğreneceksiniz.",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 129.99m,
+                            Title = "Unity C#; Sıfırdan İleri Seviyeye Oyun Tasarlama"
+                        },
+                        new
+                        {
+                            Id = new Guid("76f5c696-812e-434f-9e4a-852633a9100d"),
+                            CategoryId = new Guid("83668fa1-fe5e-4e41-86a7-f61672db3013"),
+                            Description = "A comprehensive course on C# programming.",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 129.99m,
+                            Title = ".Net Core(API/MVC) ile Observability(Trace,Log ve Metric)"
+                        },
+                        new
+                        {
+                            Id = new Guid("231b226d-8ae1-4fe3-b9cf-456525cfc7f7"),
+                            CategoryId = new Guid("aa17679c-7a07-45b0-831e-87f02faa911a"),
+                            Description = "A comprehensive course on C# programming.",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 49.99m,
+                            Title = "Learn C#"
+                        },
+                        new
+                        {
+                            Id = new Guid("35bb75be-93b0-48d3-8953-f497f3ba521d"),
+                            CategoryId = new Guid("aa17679c-7a07-45b0-831e-87f02faa911a"),
+                            Description = "Bu kursun amacı, katmanlı mimari veya Clean Architecture gibi yazılım mimarilerini kullanarak uygulama geliştirirken izlenmesi gereken en iyi uygulama ve teknikleri (best practices) kapsamlı bir şekilde ele almaktır. Kurs boyunca, bu mimari desenlerin temel prensiplerini, yapı taşlarını ve gerçek dünyada karşılaşabileceğiniz senaryolarda nasıl etkili bir şekilde uygulanabileceklerini detaylı olarak inceleyeceğiz. Katılımcılar, bu mimarileri kullanarak yazılım geliştirme süreçlerinde karşılaşabilecekleri zorlukları nasıl aşabileceklerini ve kaliteli, sürdürülebilir yazılımlar geliştirebilmek için hangi adımları atmaları gerektiğini öğrenecekler.Katmanlı mimari (NLayer Architecture), bir yazılım uygulamasını farklı işlevsel bileşenlere veya katmanlara ayırarak, bu bileşenlerin daha modüler, bakımı kolay ve test edilebilir hale gelmesini sağlayan bir yazılım mimarisi desenidir. Her katman, belirli bir sorumluluğa sahip olup, uygulamanın belirli bir bölümünün işlevselliğini kapsar. Bu mimari, yazılım geliştirme sürecinde karmaşıklığı yönetmek ve uygulamanın esnekliğini artırmak amacıyla kullanılır.",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 299.99m,
+                            Title = "Net 8 API/WEB | NLayer/Clean Architecture | Best Practice"
+                        },
+                        new
+                        {
+                            Id = new Guid("e951261d-8ae3-479b-8d8d-7bc7ccbfc36c"),
+                            CategoryId = new Guid("3cd3bec7-e935-41e3-afd8-eb600f05174f"),
+                            Description = "Microservice Mimari, günümüzde backend developer'ların bilmesi ve öğrenmesi gereken mimari yaklaşımdır.\r\n\r\nBu kursumda .Net 5 ile Microservice mimari nasıl geliştirilebileceğini öğreneceksiniz.\r\n\r\nMicroservice'ler arasında senkron ve asenkron iletişim nasıl kurulur öğreneceksiniz.\r\n\r\nMicroservice mimaride  OAuth 2.0 ve OpenID Connect protokollerinin nasıl implement edileceğiniz öğreniyor olacaksınız.\r\n\r\nMicroservice'lere ait veritabanlarında tutarlılığı sağlamak için Eventual Consistency model'inin nasıl uygulanacağını öğreneceksiniz.\r\n\r\nMicroservice'lerimizi nasıl dockerize edileceğini öğreneceksiniz.\r\n\r\nDocker Compose dosyasının nasıl oluşturulacağını öğreneceksiniz.\r\n\r\nÇeşitli veritabanlarını container olarak nasıl ayağa kaldırılacağını öğreniyor olacaksınız.\r\n\r\nKursta, udemy benzeri bir online kurs satış platformunu microservice mimari ile geliştiriyor olacağız.",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 159.99m,
+                            Title = "Net ile Microservices ( .Net 7 Upgrade )"
+                        },
+                        new
+                        {
+                            Id = new Guid("4e0c3c93-f7d5-4d14-944c-490adac81a0f"),
+                            CategoryId = new Guid("0cd7de0d-d051-45e0-bb5b-8541b7391ad2"),
+                            Description = "React js ; Facebook tarafından 2013 yılında geliştirilmiş bir Javascript kütüphanesidir.\r\n\r\nŞuanda sektörde birçok kurumsal şirket tarafından sıklıkla tercih edilmektedir. React size interaktif , hızlı ve kolay bir şekilde arayüz geliştirmenize olanak sağlar.\r\n\r\nReact'ın en önemli özelliği component ve state mantığıdır. Uygulamanızı yapboz gibi küçük küçük componentlere bölerek kod tekrarını engelleyip , tekrar tekrar kullanılabilirlik sağlamış olur.\r\n\r\nBir diğer en önemli özelliklerinden bir tanesi de şudur bir state'in değeri değiştiği zaman bütün uygulama değil sadece o state'in bulunduğu component tekrar render edilmiş olur. Bu sayede yüksek performans ve kullanışlılık sunmuş olur.\r\n\r\n",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 49.99m,
+                            Title = "Sıfırdan İleri Seviye React Kursu : Güncel Eğitim 2024"
+                        },
+                        new
+                        {
+                            Id = new Guid("c2f3ae28-5e76-477b-a220-81e18fb894c2"),
+                            CategoryId = new Guid("0cd7de0d-d051-45e0-bb5b-8541b7391ad2"),
+                            Description = "React (ReactJS veya React.js olarak da bilinir) kullanıcı arayüzü oluşturmaya yarayan açık kaynak kodlu bir javascript kütüphanesidir. Facebook önderliğinde bir geliştirici grubu tarafından geliştirilmekte olan React, Model-View-Controller prensibine uygun olarak oluşturulmuştur. React ile single-page olarak adlandırılan sayfalar geliştirilebileceği gibi React-Native ile mobil uygulamalar da geliştirilebilir.\r\n\r\nReact, interaktif kullanıcı arayüzü geliştirmeyi zahmetsiz hale getirir. Siz uygulamanızdaki her durum için basit sayfalar tasarlayın. React, veriniz değiştiğinde sadece doğru bileşenleri verimli bir şekilde güncellesin ve oluştursun.",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 100.99m,
+                            Title = "React JS : Uygulamalı React JS -Redux Eğitimi"
+                        },
+                        new
+                        {
+                            Id = new Guid("50ba3fd3-b595-4705-99c0-82d90ef1853d"),
+                            CategoryId = new Guid("aa17679c-7a07-45b0-831e-87f02faa911a"),
+                            Description = ".NET Core Identity, ASP.NET Core için bir kimlik doğrulama ve yetkilendirme çözümüdür. Identity, kullanıcıların kimlik doğrulamasını (authentication) ve yetkilendirilmesini (authorization) yönetmek için gerekli olan araçları sağlar.\r\n\r\nBizde bu kursumuzda  .Net 7 SDK ile  Asp.Net Core MVC projesi oluşturup, Identity API'nin tüm özelliklerini bu proje üzerinde adım adım gerçekleştireceğiz.",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 49.99m,
+                            Title = "Asp.Net Core Üyelik Sistemi (Asp.Net Core Identity)"
+                        },
+                        new
+                        {
+                            Id = new Guid("5f6894b8-4df3-4ee1-85e6-d4bf59ae6006"),
+                            CategoryId = new Guid("c2170d5e-fdc2-476d-8afe-6303ef0795fc"),
+                            Description = "Elasticsearch, açık kaynaklı bir dağıtılmış arama ve analiz motorudur. Büyük miktardaki verileri hızlı bir şekilde depolama, arama, analiz etme ve gerçek zamanlı olarak keşfetme yeteneği sunar. Elasticsearch, ölçeklenebilir, yüksek performanslı ve esnek bir yapıya sahiptir.",
+                            InstructorId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
+                            Price = 49.99m,
+                            Title = "Elasticsearch | Net Core"
+                        });
                 });
 
             modelBuilder.Entity("InveonCourseAppBackend.Domain.Entities.Order", b =>
@@ -170,13 +299,13 @@ namespace InveonCourseAppBackend.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ab44d7ce-900f-4b3e-89f6-ec87e296985f"),
+                            Id = new Guid("2b5ecd24-6895-41fb-a0a2-f18f5a3e1af3"),
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         },
                         new
                         {
-                            Id = new Guid("e30d405e-d011-483c-99f7-eb3e9178d9d9"),
+                            Id = new Guid("50ecf675-1a19-4bf1-b7d9-9bce04411c2d"),
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -276,13 +405,13 @@ namespace InveonCourseAppBackend.Infrastructure.Migrations
                         {
                             Id = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "144e54cb-1b4f-4aa3-b946-6a31f55f1045",
+                            ConcurrencyStamp = "0bb8d66d-4581-41f6-b17f-1e4beb6077c4",
                             Email = "Instructor@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "INSTRUCTOR@GMAIL.COM",
                             NormalizedUserName = "INSTRUCTOR",
-                            PasswordHash = "AQAAAAIAAYagAAAAEF5F5EMYytq1BhLtGGIm54MAz5qDglk6htrwaXQs8xvTiYLpYn1TdKvz/GCX/Ho5qA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIeDUTmooPP1wO5H2O3OCT3NW4RgQpIKVSapJSqZO0nYBkdvAV3xuN/j666abhAgYQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -292,13 +421,13 @@ namespace InveonCourseAppBackend.Infrastructure.Migrations
                         {
                             Id = new Guid("ac1d06b5-1c29-4222-9270-f3e9586a3e8f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e4dd0cf9-2368-4094-a159-3a35ffd462c7",
+                            ConcurrencyStamp = "af79cf87-6d24-48ce-8864-cea75cbcc73a",
                             Email = "user@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@GMAIL.COM",
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFJSGgfIFrSwxmc9mRG+oSU74FawmCg7418xiNFLmXEW4uCzKXoBDSEMsfQYPqaRvg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEDS+WhtGt7OrqVlcH0VC8l4omIkQJmInVFnCSCzRBrnUmZvvP6yqRAVf0A/jA+qqA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -393,12 +522,12 @@ namespace InveonCourseAppBackend.Infrastructure.Migrations
                         new
                         {
                             UserId = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
-                            RoleId = new Guid("ab44d7ce-900f-4b3e-89f6-ec87e296985f")
+                            RoleId = new Guid("2b5ecd24-6895-41fb-a0a2-f18f5a3e1af3")
                         },
                         new
                         {
                             UserId = new Guid("ac1d06b5-1c29-4222-9270-f3e9586a3e8f"),
-                            RoleId = new Guid("e30d405e-d011-483c-99f7-eb3e9178d9d9")
+                            RoleId = new Guid("50ecf675-1a19-4bf1-b7d9-9bce04411c2d")
                         });
                 });
 

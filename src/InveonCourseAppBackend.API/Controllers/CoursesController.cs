@@ -25,14 +25,14 @@ namespace InveonCourseAppBackend.API.Controllers
             var courses = await _courseService.GetAllCourseAsync();
             return Ok(courses);
         }
-        [Authorize]
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCourseById(Guid id) 
         {
             var course=await _courseService.GetCourseByIdAsync(id);
             return Ok(course);
         }
-
+        [Authorize(Roles = "Instructor")]
         [HttpPost]
         public async Task<IActionResult> AddCourse(CourseCreateDto courseCreateDto)
         {
@@ -41,12 +41,14 @@ namespace InveonCourseAppBackend.API.Controllers
             await _courseService.AddCourseAsync(courseCreateDto);
             return Ok(courseCreateDto);
         }
+        [Authorize(Roles ="Instructor")]
         [HttpPut]
         public async Task<IActionResult> UpdateCourse(CourseUpdateDto courseUpdateDto)
         {
             await _courseService.UpdateCourseAsync(courseUpdateDto.Id, courseUpdateDto);
             return NoContent();
         }
+        [Authorize(Roles = "Instructor")]
         [HttpDelete]
         public async Task<IActionResult> DeleteCourse(Guid id)
         {

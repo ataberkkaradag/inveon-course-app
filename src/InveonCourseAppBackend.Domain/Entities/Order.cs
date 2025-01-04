@@ -12,7 +12,7 @@ namespace InveonCourseAppBackend.Domain.Entities
         {
             Id = Guid.NewGuid();
         }
-        public Guid Id { get; private set; }
+        public Guid Id { get;  set; }
         public Guid UserId { get; set; }
         public User User { get; set; }
         public DateTime OrderDate { get; set; }

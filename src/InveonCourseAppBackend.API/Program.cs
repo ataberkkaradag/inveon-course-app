@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 
-// Add services to the container.
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", builder =>

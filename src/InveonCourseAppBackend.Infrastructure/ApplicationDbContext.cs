@@ -58,54 +58,9 @@ namespace InveonCourseAppBackend.Infrastructure
                 .HasForeignKey(c => c.CategoryId);
 
 
+            SeedData.Seed(builder);
 
 
-
-
-
-            var roles = new List<Role>
-            {
-                new Role { Id = Guid.NewGuid(), Name = "Instructor", NormalizedName = "INSTRUCTOR" },
-                new Role { Id = Guid.NewGuid(), Name = "Student", NormalizedName = "STUDENT" }
-            };
-            builder.Entity<Role>().HasData(roles);
-
-            var hasher = new PasswordHasher<User>();
-
-            var instructorUser = new User
-            {
-                Id = new Guid("008a0697-cf89-453c-8a84-0be4e576e79a"),
-                UserName = "instructor",
-                NormalizedUserName = "INSTRUCTOR",
-                Email = "Instructor@gmail.com",
-                NormalizedEmail = "INSTRUCTOR@GMAIL.COM",
-                EmailConfirmed = true,
-                PasswordHash = hasher.HashPassword(null, "Instructor123*"),
-                SecurityStamp = string.Empty
-            };
-
-            var normalUser = new User
-            {
-                Id = new Guid("ac1d06b5-1c29-4222-9270-f3e9586a3e8f"),
-                UserName = "user",
-                NormalizedUserName = "USER",
-                Email = "user@gmail.com",
-                NormalizedEmail = "USER@GMAIL.COM",
-                EmailConfirmed = true,
-                PasswordHash = hasher.HashPassword(null, "User123*"),
-                SecurityStamp = string.Empty
-            };
-
-
-            builder.Entity<User>().HasData(instructorUser, normalUser);
-
-
-            var userRoles = new List<IdentityUserRole<Guid>>
-            {
-                new IdentityUserRole<Guid> { UserId = instructorUser.Id, RoleId = roles[0].Id },
-                new IdentityUserRole<Guid> { UserId = normalUser.Id, RoleId = roles[1].Id }
-            };
-            builder.Entity<IdentityUserRole<Guid>>().HasData(userRoles);
         }
      }
      

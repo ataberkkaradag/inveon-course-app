@@ -3,6 +3,7 @@ using InveonCourseAppBackend.Application.DTOs.Category;
 using InveonCourseAppBackend.Application.DTOs.User;
 using InveonCourseAppBackend.Application.Services;
 using InveonCourseAppBackend.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +21,7 @@ namespace InveonCourseAppBackend.API.Controllers
             _userService = userService;
             _studentCourseService = studentCourseService;
         }
-
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateUser(UserUpdateDto userUpdateDto)
         {
@@ -28,6 +29,7 @@ namespace InveonCourseAppBackend.API.Controllers
             await _userService.UpdateUserAsync(userUpdateDto.Id,userUpdateDto);
             return NoContent();
         }
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
@@ -49,7 +51,7 @@ namespace InveonCourseAppBackend.API.Controllers
             var users = await _userService.GetAllUsersAsync();
             return Ok(users);
         }
-
+        [Authorize]
         [HttpGet("courses/{userId}")]
         public async Task<IActionResult> GetCoursesByUserId(Guid userId)
         {
