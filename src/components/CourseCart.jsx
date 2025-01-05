@@ -27,13 +27,10 @@ function CourseCart({ courses }) {
     return text;
   };
   const handleDetail = (courseId) => {
-    if (isAuthenticated()) {
-      
+    
       navigate(`/course/${courseId}`);
-    } else {
-      
-      navigate("/login");
-    }
+    
+    
   };
   if (loading) {
     

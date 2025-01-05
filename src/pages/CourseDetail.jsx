@@ -42,14 +42,14 @@ function CourseDetail() {
   }, [id]);
 
   const handleAddToCart=(course)=>{
-    if (isAuthenticated()) {
+    
       addToCart(course)
     
       navigate(`/`);
-    } else {
-      navigate("/login");
+   
       
-    }
+      
+   
     
     
   }
