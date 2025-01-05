@@ -42,7 +42,7 @@ export const CreateCourseForm = ({ instructorId }) => {
         setCategories(response.data);
       })
       .catch((error) => {
-        console.error('Kategori yüklenirken hata oluştu:', error);
+        console.error('An error occured while loading category:', error);
       });
   }, []);
 
